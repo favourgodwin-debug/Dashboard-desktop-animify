@@ -1,367 +1,239 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animiy - Create Video</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --sidebar-width: 260px;
-            --primary-purple: #7c3aed;
-            --bg-white: #ffffff;
-            --border-color: #f0f0f0;
-            --text-muted: #64748b;
-        }
+import { useState } from 'react';
+import { RefreshCw, Sparkles, ChevronLeft, ChevronRight, Coins } from 'lucide-react';
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-white);
-            color: #1e293b;
-            overflow-x: hidden;
-        }
+export function CreateVideoForm() {
+  const [selectedCharacters, setSelectedCharacters] = useState(1);
+  const [selectedDuration, setSelectedDuration] = useState('0-15');
+  const [selectedAspectRatio, setSelectedAspectRatio] = useState('16:9');
+  const [selectedAIModel, setSelectedAIModel] = useState('gpt5');
 
-        /* Sidebar Styling */
-        .sidebar {
-            width: var(--sidebar-width);
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            background: var(--bg-white);
-            border-right: 1px solid var(--border-color);
-            padding: 1.5rem;
-            z-index: 1000;
-        }
+  const characterOptions = [1, 2, 3, 4, 5, 'auto'];
+  
+  const durationOptions = [
+    { value: '0-15', label: '0 to 15 seconds', icon: '⏱️' },
+    { value: '1min', label: 'Up to 1 Min', icon: '⏱️' },
+    { value: '2min', label: 'Up to 2 Min', icon: '⏱️' },
+    { value: '3min', label: 'Up to 3 Min', icon: '⏱️' },
+    { value: '5min', label: 'Up to 5 Min', icon: '⏱️' },
+  ];
 
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            color: var(--text-muted);
-            border-radius: 0.5rem;
-            margin-bottom: 0.25rem;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
+  const aspectRatioOptions = [
+    { value: '16:9', label: '16:9', icon: '📺' },
+    { value: '9:16', label: '9:16', icon: '📱' },
+    { value: '1:1', label: '1:1', icon: '⬛' },
+  ];
 
-        .nav-link:hover, .nav-link.active {
-            background-color: #f8fafc;
-            color: var(--primary-purple);
-        }
+  const aiModels = [
+    { value: 'gpt5', label: 'GPT 5', icon: '🎯', stars: 5 },
+    { value: 'claude', label: 'Claude', icon: '✨', stars: 3 },
+    { value: 'gemini', label: 'Gemini', icon: '💎', stars: 5 },
+    { value: 'grok', label: 'Grok', icon: '⚡', stars: 4 },
+    { value: 'llama', label: 'Llama', icon: '∞', stars: 4 },
+  ];
 
-        .nav-link i {
-            margin-right: 0.75rem;
-            width: 20px;
-        }
+  return (
+    <div className="max-w-[900px] mx-auto p-6">
+      {/* Top Buttons */}
+      <div className="flex justify-end gap-3 mb-6">
+        <button className="px-5 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          Manual mode
+        </button>
+        <button className="px-5 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <RefreshCw className="w-4 h-4 text-purple-600" />
+          Re-write
+        </button>
+      </div>
 
-        /* Main Content Styling */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            padding: 2rem;
-            min-height: 100vh;
-        }
-
-        .header-section {
-            margin-bottom: 2rem;
-        }
-
-        /* Generation Box */
-        .creation-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .prompt-textarea {
-            border: 1px solid var(--border-color);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            min-height: 150px;
-            width: 100%;
-            resize: none;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            margin-bottom: 1.5rem;
-        }
-
-        .prompt-textarea:focus {
-            outline: none;
-            border-color: var(--primary-purple);
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
-        }
-
-        /* Settings Card */
-        .settings-card {
-            background: #fdfdff;
-            border: 1px solid var(--border-color);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .setting-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .setting-item:last-child {
-            border-bottom: none;
-        }
-
-        .form-select-custom {
-            border: none;
-            background: transparent;
-            font-weight: 600;
-            color: var(--primary-purple);
-            cursor: pointer;
-            text-align: right;
-            padding-right: 1.5rem;
-        }
-
-        .form-select-custom:focus {
-            outline: none;
-        }
-
-        /* Generate Button */
-        .btn-generate {
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
-            color: white;
-            border: none;
-            border-radius: 0.75rem;
-            padding: 1rem 2.5rem;
-            font-weight: 600;
-            width: 100%;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: transform 0.2s;
-        }
-
-        .btn-generate:hover {
-            transform: translateY(-2px);
-            color: white;
-            opacity: 0.9;
-        }
-
-        /* Character/Voice Selection */
-        .selection-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .selection-card {
-            border: 2px solid transparent;
-            border-radius: 0.75rem;
-            padding: 0.5rem;
-            text-align: center;
-            cursor: pointer;
-            background: #f8fafc;
-            transition: all 0.2s;
-        }
-
-        .selection-card.active {
-            border-color: var(--primary-purple);
-            background: #f5f3ff;
-        }
-
-        .selection-card img {
-            width: 100%;
-            border-radius: 0.5rem;
-            aspect-ratio: 1;
-            object-fit: cover;
-            margin-bottom: 0.5rem;
-        }
-
-        .selection-card span {
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            .main-content {
-                margin-left: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Sidebar -->
-    <aside class="sidebar d-none d-md-block">
-        <div class="mb-5 px-2">
-            <h4 class="fw-bold"><i data-lucide="video" class="text-primary d-inline me-2"></i>Animiy</h4>
+      {/* Main Form */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+        {/* Video Description */}
+        <div className="mb-8">
+          <label className="block mb-3 font-medium text-gray-900">
+            Describe your video
+          </label>
+          <textarea
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+            rows={4}
+            placeholder="How to grow your start up faster..."
+          />
         </div>
-        
-        <nav>
-            <a href="#" class="nav-link">
-                <i data-lucide="layout-grid"></i> Dashboard
-            </a>
-            <a href="#" class="nav-link active">
-                <i data-lucide="plus-circle"></i> Create Video
-            </a>
-            <a href="#" class="nav-link">
-                <i data-lucide="library"></i> My Library
-            </a>
-            <a href="#" class="nav-link">
-                <i data-lucide="users"></i> Characters
-            </a>
-            <a href="#" class="nav-link">
-                <i data-lucide="settings"></i> Settings
-            </a>
-        </nav>
 
-        <div class="mt-auto pt-5" style="position: absolute; bottom: 2rem; width: 210px;">
-            <div class="p-3 bg-light rounded-3">
-                <p class="small text-muted mb-2">Credits Remaining</p>
-                <div class="progress mb-2" style="height: 6px;">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 75%"></div>
-                </div>
-                <p class="small fw-bold mb-0">150 / 200</p>
-            </div>
+        {/* Choose number of characters */}
+        <div className="mb-8">
+          <label className="block mb-3 font-medium text-gray-900">
+            Choose number of characters
+          </label>
+          <div className="flex gap-3">
+            {characterOptions.map((option) => (
+              <button
+                key={option}
+                onClick={() => setSelectedCharacters(option === 'auto' ? 'auto' : Number(option))}
+                className={`flex-1 px-4 py-3 border-2 rounded-lg transition-all ${
+                  selectedCharacters === option
+                    ? 'border-purple-600 bg-purple-50 text-purple-700'
+                    : 'border-gray-300 hover:border-gray-400 text-gray-700'
+                }`}
+              >
+                {option === 'auto' ? 'Choose auto' : option}
+              </button>
+            ))}
+          </div>
         </div>
-    </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="creation-container">
-            <div class="header-section text-center">
-                <h2 class="fw-bold mb-2">Create New Video</h2>
-                <p class="text-muted">Describe your scene and choose your style to generate a high-quality video.</p>
-            </div>
-
-            <!-- Prompt Input -->
-            <textarea class="prompt-textarea" placeholder="Describe what happens in your video... e.g. A character sitting in a coffee shop, rainy day outside, cinematic lighting..."></textarea>
-
-            <!-- Settings Section -->
-            <div class="row g-4 mb-4">
-                <div class="col-md-6">
-                    <div class="settings-card h-100">
-                        <h6 class="fw-bold mb-3"><i data-lucide="sliders" class="me-2" style="width:16px"></i> Video Settings</h6>
-                        <div class="setting-item">
-                            <span>Ratio</span>
-                            <select class="form-select-custom">
-                                <option>16:9 (Widescreen)</option>
-                                <option>9:16 (Vertical)</option>
-                                <option>1:1 (Square)</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <span>Duration</span>
-                            <select class="form-select-custom">
-                                <option>5 Seconds</option>
-                                <option>10 Seconds</option>
-                                <option>30 Seconds</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <span>Quality</span>
-                            <select class="form-select-custom">
-                                <option>Standard HD</option>
-                                <option>Ultra 4K</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="settings-card h-100">
-                        <h6 class="fw-bold mb-3"><i data-lucide="palette" class="me-2" style="width:16px"></i> Art Style</h6>
-                        <div class="selection-grid">
-                            <div class="selection-card active">
-                                <img src="https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=200&h=200&fit=crop" alt="Anime">
-                                <span>Anime</span>
-                            </div>
-                            <div class="selection-card">
-                                <img src="https://images.unsplash.com/photo-1614728263952-84ea206f99b6?w=200&h=200&fit=crop" alt="3D Render">
-                                <span>3D Render</span>
-                            </div>
-                            <div class="selection-card">
-                                <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=200&h=200&fit=crop" alt="Oil Painting">
-                                <span>Oil Painting</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Voice Selection -->
-            <div class="settings-card">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h6 class="fw-bold mb-0"><i data-lucide="mic" class="me-2" style="width:16px"></i> Voice Talent</h6>
-                    <a href="#" class="small text-primary text-decoration-none">Browse All</a>
-                </div>
-                <div class="row g-3">
-                    <div class="col-md-4">
-                        <div class="p-2 border rounded d-flex align-items-center gap-2 bg-white">
-                            <div class="bg-light rounded-circle p-2">
-                                <i data-lucide="play" style="width:14px; fill:currentColor"></i>
-                            </div>
-                            <div>
-                                <div class="small fw-bold">Sarah</div>
-                                <div class="text-muted" style="font-size: 0.75rem">Warm & Friendly</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="p-2 border rounded d-flex align-items-center gap-2 bg-white border-primary">
-                            <div class="bg-primary text-white rounded-circle p-2">
-                                <i data-lucide="play" style="width:14px; fill:currentColor"></i>
-                            </div>
-                            <div>
-                                <div class="small fw-bold">Marcus</div>
-                                <div class="text-muted" style="font-size: 0.75rem">Authoritative</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="p-2 border rounded d-flex align-items-center gap-2 bg-white">
-                            <div class="bg-light rounded-circle p-2">
-                                <i data-lucide="play" style="width:14px; fill:currentColor"></i>
-                            </div>
-                            <div>
-                                <div class="small fw-bold">Emma</div>
-                                <div class="text-muted" style="font-size: 0.75rem">Soft & Calm</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Generate Button -->
-            <button class="btn btn-generate shadow">
-                <i data-lucide="sparkles"></i> Generate Video
-            </button>
-            <p class="text-center text-muted small mt-3">Generation takes approximately 1-2 minutes.</p>
+        {/* Promotional Content */}
+        <div className="mb-8">
+          <label className="block mb-3 font-medium text-gray-900">
+            Describe the content you'd like to promote
+          </label>
+          <textarea
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+            rows={4}
+            placeholder="Enter promotional details.... (optional)"
+          />
         </div>
-    </main>
 
-    <!-- Scripts -->
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        {/* Video Duration */}
+        <div className="mb-8">
+          <label className="block mb-3 font-medium text-gray-900">
+            Video Duration
+          </label>
+          <div className="flex gap-3">
+            {durationOptions.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => setSelectedDuration(option.value)}
+                className={`flex-1 px-4 py-3 border-2 rounded-lg transition-all flex items-center justify-center gap-2 ${
+                  selectedDuration === option.value
+                    ? 'border-purple-600 bg-purple-50 text-purple-700'
+                    : 'border-gray-300 hover:border-gray-400 text-gray-700'
+                }`}
+              >
+                <Sparkles className="w-4 h-4 text-purple-600" />
+                <span className="text-sm">{option.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
 
-        // Selection card interaction
-        document.querySelectorAll('.selection-card').forEach(card => {
-            card.addEventListener('click', function() {
-                document.querySelectorAll('.selection-card').forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
-</body>
-</html>
+        {/* Aspect Ratio */}
+        <div className="mb-8">
+          <label className="block mb-3 font-medium text-gray-900">
+            Aspect Ratio
+          </label>
+          <div className="flex gap-3">
+            {aspectRatioOptions.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => setSelectedAspectRatio(option.value)}
+                className={`px-6 py-3 border-2 rounded-lg transition-all flex items-center justify-center gap-2 ${
+                  selectedAspectRatio === option.value
+                    ? 'border-purple-600 bg-purple-50 text-purple-700'
+                    : 'border-gray-300 hover:border-gray-400 text-gray-700'
+                }`}
+              >
+                <div className={`w-6 h-6 border-2 ${
+                  selectedAspectRatio === option.value ? 'border-purple-600' : 'border-gray-400'
+                } rounded flex items-center justify-center`}>
+                  {option.value === '16:9' && (
+                    <div className="w-4 h-2.5 border-2 border-current rounded-sm"></div>
+                  )}
+                  {option.value === '9:16' && (
+                    <div className="w-2 h-4 border-2 border-current rounded-sm"></div>
+                  )}
+                  {option.value === '1:1' && (
+                    <div className="w-3 h-3 border-2 border-current rounded-sm"></div>
+                  )}
+                </div>
+                <span>{option.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* AI Model */}
+        <div className="mb-8">
+          <label className="block mb-3 font-medium text-gray-900">
+            AI model
+          </label>
+          <div className="flex gap-3 mb-3">
+            {aiModels.map((model) => (
+              <div key={model.value} className="flex-1 flex flex-col items-center">
+                <div className="flex gap-0.5 mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <span
+                      key={i}
+                      className={`text-sm ${
+                        i < model.stars ? 'text-yellow-400' : 'text-gray-300'
+                      }`}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setSelectedAIModel(model.value)}
+                  className={`w-full px-4 py-3 border-2 rounded-lg transition-all flex items-center justify-center gap-2 ${
+                    selectedAIModel === model.value
+                      ? 'border-purple-600 bg-purple-50 text-purple-700'
+                      : 'border-gray-300 hover:border-gray-400 text-gray-700'
+                  }`}
+                >
+                  {model.value === 'gpt5' && (
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                    </svg>
+                  )}
+                  {model.value === 'claude' && (
+                    <svg className="w-5 h-5 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  )}
+                  {model.value === 'gemini' && (
+                    <svg className="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/>
+                    </svg>
+                  )}
+                  {model.value === 'grok' && (
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M13 2L3 14h8l-1 8 10-12h-8z"/>
+                    </svg>
+                  )}
+                  {model.value === 'llama' && (
+                    <svg className="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M12 2v20M2 12h20"/>
+                      <circle cx="12" cy="12" r="8"/>
+                    </svg>
+                  )}
+                  <span className="text-sm font-medium">{model.label}</span>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Video AI */}
+        <div className="mb-6">
+          <label className="block mb-3 font-medium text-gray-900">
+            Video AI
+          </label>
+          <div className="flex items-center gap-2 px-4 py-2 bg-yellow-50 border border-yellow-200 rounded-lg w-fit">
+            <Coins className="w-4 h-4 text-yellow-600" />
+            <span className="text-sm text-gray-700">200 / second</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Buttons */}
+      <div className="flex items-center justify-between mt-6">
+        <button className="px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <ChevronLeft className="w-4 h-4" />
+          <span>Back</span>
+        </button>
+        <button className="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2">
+          <span>Proceed</span>
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+}

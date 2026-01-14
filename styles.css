@@ -1,203 +1,56 @@
-:root{
-  --purple: #6f2bdc;
-  --purple-dark: #4b1fb0;
-  --muted: #6c6c6c;
-  --card-radius: 12px;
+:root {
+  --purple: #6c5ce7;
+  --purple-dark: #a29bfe;
   --sidebar-width: 260px;
-  --bg: #f7f6fb;
 }
 
-*{ box-sizing: border-box; }
-body{
-  font-family: "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: var(--bg);
-  margin: 0;
-  color: #222;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body { font-family: 'Nunito Sans', sans-serif; background-color: #f4f7fe; }
+
+/* Sidebar Icons */
+.sidebar .nav-link i { width: 24px; height: 24px; font-size: 20px; display: flex; align-items: center; justify-content: center; flex: none; }
+
+/* Topbar Alignment & Padding Fix */
+.topbar { background: white; border-bottom: 1px solid #eee; height: 70px; }
+.coins-badge {
+  padding: 6px 16px;
+  background: #f8f9fa;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dee2e6;
 }
+.btn-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #dee2e6; display: flex; align-items: center; justify-content: center; color: #666; }
 
-/* Layout */
-.app { min-height: 100vh; }
+/* Description Input - Reduced Text Size */
+.video-input { font-size: 15px !important; color: #444; padding: 15px; border-radius: 12px; border: 1px solid #e0e0e0; }
+.video-input::placeholder { font-size: 14px; color: #aaa; }
 
-/* Sidebar */
-.sidebar{
-  width: var(--sidebar-width);
-  background: linear-gradient(180deg, var(--purple) 0%, #6a28b9 100%);
-  min-height: 100vh;
-  padding-top: 20px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  overflow: hidden;
-}
+/* AI Model Options */
+.model-opt { padding: 10px 20px; border: 1px solid #dee2e6; border-radius: 10px; background: white; display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.model-opt.selected { border-color: var(--purple); color: var(--purple); background: #f0edff; }
 
-.logo-section .brand-mark{
-  width:44px; height:44px; border-radius:10px;
-  background: linear-gradient(135deg,#2ed6ff,#7126f0);
-  display:flex; align-items:center; justify-content:center;
-  font-weight:700; color:white; font-size:20px;
-}
-.logo-section .brand-text{
-  font-weight:700; font-size:20px; margin-left:8px;
-}
-
-.sidebar .nav { margin-top: 20px; }
-.sidebar .nav-link{
-  color: rgba(255,255,255,0.9);
-  border-radius:10px;
-  padding:12px 14px;
-  margin-bottom:6px;
-  display:flex; align-items:center;
-}
-.sidebar .nav-link:hover { background: rgba(255,255,255,0.06); color: #fff; text-decoration:none; }
-.sidebar .nav-link.active{
-  background: rgba(0,0,0,0.18);
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.06);
-  font-weight:600;
-}
-
-/* Footer logos area */
-.footer-logos .small{ opacity:0.9; font-weight:700;}
-.social-icons i{ margin-right:8px; font-size:18px; opacity:0.9; }
-
-/* Main content area offset for sidebar */
-.content-area{
-  margin-left: var(--sidebar-width);
-  min-height:100vh;
-}
-
-/* Topbar */
-.topbar{
-  background: white;
-  border-bottom: 1px solid #eee;
-}
-
-/* Card */
-.page-card{
-  border-radius: var(--card-radius);
-  overflow: hidden;
-}
-
-/* Options */
-.btn-options .option {
-  border-radius: 12px;
-  padding: 10px 16px;
-  min-width: 74px;
-  font-weight:500;
-  color: var(--muted);
-  background: white;
-  border: 1px solid #e6e6e6;
-  box-shadow: none;
-}
-.btn-options .option.selected {
-  background: linear-gradient(180deg, rgba(111,43,220,0.08), rgba(111,43,220,0.03));
-  border-color: var(--purple);
-  color: var(--purple-dark);
-  box-shadow: 0 0 0 4px rgba(111,43,220,0.06);
-}
-/* Make selected feel more "bootstrap-like" */
-.btn-options .option.selected { transform: translateY(-2px); }
-
-/* AI model */
-.ai-models .model { min-width:140px; }
-
-/* Large textarea */
-.form-control-lg { border-radius: 10px; }
-
-/* Bottom actions */
+/* Bottom Action Bar: Complete Width & Height */
 .bottom-actions {
   position: sticky;
   bottom: 0;
-  /* FIX WIDTH: Anchors the bar from the sidebar to the screen edge */
   left: var(--sidebar-width);
   right: 0;
-  width: auto; 
-  
+  width: auto;
   background: white;
-  z-index: 40;
+  z-index: 100;
   border-top: 1px solid #eee;
-  
-  /* INCREASE HEIGHT: Adding vertical padding makes the bar taller */
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0;
 }
+.bottom-actions .btn-lg { padding: 12px 35px; font-weight: 700; font-size: 1.1rem; }
+.btn-primary { background: var(--purple); border: none; }
 
-/* Align buttons to left and right */
-.bottom-actions .container-fluid {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 40px !important;
-  padding-right: 40px !important;
-  max-width: none;
-}
+/* Sidebar width logic */
+.sidebar { width: var(--sidebar-width); min-height: 100vh; background: var(--purple); position: sticky; top: 0; }
 
-/* INCREASE BUTTON SIZE: Custom padding for the buttons */
-.bottom-actions .btn-lg {
-  padding: 12px 35px; /* Taller and wider buttons */
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 50px !important;
-}
-
-/* Proceed button color */
-.btn-primary {
-  background: var(--purple);
-  border-color: var(--purple);
-}
-.btn-primary:hover {
-  background: var(--purple-dark);
-  border-color: var(--purple-dark);
-}
-
-/* Small helper tweaks */
-#charCount { font-variant-numeric: tabular-nums; }
-
-/* Modal adjustments */
-.modal-body .p-3 { min-height: 60px; }
-
-/* Mode buttons (separated outlined buttons matching screenshot) */
-.mode-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  padding: .35rem .9rem;
-  border-radius: 12px;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.12);
-  color: #111827;
-  font-size: .95rem;
-  line-height: 1;
-  box-shadow: none;
-}
-.mode-btn:hover {
-  box-shadow: 0 6px 18px rgba(16,24,40,0.04);
-  transform: translateY(-1px);
-}
-.mode-btn:focus { outline: none; box-shadow: 0 0 0 4px rgba(111,43,220,0.06); }
-
-/* Accent (rewrite) - purple outline + icon color */
-.mode-btn--accent {
-  border-color: var(--purple);
-  color: var(--purple-dark);
-  background: linear-gradient(180deg, rgba(111,43,220,0.03), #fff);
-}
-.mode-btn--accent i { color: var(--purple); }
-
-/* Placeholder icon sizing */
-.icon-placeholder { display:inline-block; width:1rem; height:1rem; margin-right:.5rem; }
-
-/* active visual state (optional) */
-.mode-btn.active {
-  box-shadow: 0 0 0 4px rgba(111,43,220,0.06);
-  border-color: var(--purple);
-}
-
-/* Responsive */
-@media (max-width: 992px){
-  .sidebar{ position: relative; width: 100%; min-height: auto; }
-  .content-area{ margin-left: 0; }
-  .bottom-actions{ left: 0; width: 100%; }
+@media (max-width: 992px) {
+  .sidebar { display: none; }
+  .bottom-actions { left: 0; }
 }

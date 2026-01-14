@@ -110,7 +110,7 @@ body{
 .bottom-actions{
   position: sticky;
   bottom: 0;
-  background: transparent;
+  background: white;
   left: var(--sidebar-width);
   width: calc(100% - var(--sidebar-width));
   z-index: 40;

@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <nav class="nav flex-column px-3">
+      <nav class="nav flex-column px-3" id="sidebarNav">
         <a class="nav-link text-white d-flex align-items-center gap-2" href="#"><i class="ri-dashboard-horizontal-fill"></i> Dashboard</a>
         <a class="nav-link active d-flex align-items-center gap-2" href="#"><i class="ri-video-add-fill"></i> Create video</a>
         <a class="nav-link d-flex align-items-center gap-2" href="#"><i class="ri-robot-2-fill"></i> AI characters</a>
@@ -34,24 +34,24 @@
       </nav>
 
       <div class="px-4 py-3 footer-logos">
-        <div class="small">TEKNIKFORCE</div>
+        <div class="small text-white-50">TEKNIKFORCE</div>
         <div class="social-icons mt-2">
-          <i class="bi bi-youtube"></i><i class="bi bi-facebook"></i><i class="bi bi-x"></i>
+          <i class="bi bi-youtube me-2"></i><i class="bi bi-facebook me-2"></i><i class="bi bi-twitter-x"></i>
         </div>
       </div>
     </aside>
 
     <main class="flex-grow-1 content-area">
       <header class="topbar d-flex justify-content-between align-items-center px-4">
-        <div class="breadcrumb d-flex align-items-center">
-          <i class="ri-layout-grid-line me-2"></i>
+        <div class="breadcrumb d-flex align-items-center mb-0">
+          <i class="ri-layout-grid-line me-2 text-muted"></i>
           <span class="fw-semibold">Dashboard</span>
           <small class="text-muted ms-2">| Dashboard | Tutorial</small>
         </div>
 
         <div class="topbar-actions d-flex align-items-center gap-3">
-          <button class="btn btn-light btn-sm rounded-pill"><i class="bi bi-award-fill text-warning"></i> Admin</button>
-          <div class="coins-badge"><i class="bi bi-coin text-warning"></i> 2480</div>
+          <button class="btn btn-light btn-sm rounded-pill px-3"><i class="bi bi-award-fill text-warning me-1"></i> Admin</button>
+          <div class="coins-badge"><i class="bi bi-coin text-warning me-1"></i> 2480</div>
           <button class="btn btn-icon-circle"><i class="bi bi-bell"></i></button>
           <button class="btn btn-icon-circle"><i class="bi bi-person-circle"></i></button>
         </div>
@@ -78,12 +78,12 @@
 
             <div class="mb-4 d-flex justify-content-end">
               <button class="btn btn-outline-primary btn-sm me-2 rounded-pill px-3">Preview</button>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Clear</button>
+              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" id="clearBtn">Clear</button>
             </div>
 
             <div class="mb-4">
-              <label class="form-label fw-bold">Video Duration</label>
-              <div class="d-flex gap-2 mt-2 flex-wrap">
+              <label class="form-label fw-bold small text-uppercase text-muted">Video Duration</label>
+              <div class="d-flex gap-2 mt-2 flex-wrap" id="durationGroup">
                 <button class="option-btn selected"><i class="ri-time-line"></i> 0 to 15 seconds</button>
                 <button class="option-btn"><i class="ri-time-line"></i> Up to 1 Min</button>
                 <button class="option-btn"><i class="ri-time-line"></i> Up to 2 Min</button>
@@ -92,8 +92,8 @@
             </div>
 
             <div class="mb-4">
-              <label class="form-label fw-bold">AI model</label>
-              <div class="d-flex gap-3 flex-wrap mt-2">
+              <label class="form-label fw-bold small text-uppercase text-muted">AI model</label>
+              <div class="d-flex gap-3 flex-wrap mt-2" id="modelGroup">
                 <button class="model-opt selected"><i class="ri-openai-fill"></i> GPT 5</button>
                 <button class="model-opt"><i class="ri-sparkling-2-line"></i> Claude</button>
                 <button class="model-opt"><i class="ri-google-fill"></i> Gemini</button>
@@ -108,15 +108,3 @@
 
       <div class="bottom-actions">
         <div class="container-fluid d-flex justify-content-between align-items-center px-4">
-          <button class="btn btn-light btn-lg rounded-pill border">
-            <i class="ri-arrow-left-s-line"></i> Back
-          </button>
-          <button class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm">
-            Proceed <i class="ri-arrow-right-s-line ms-2"></i>
-          </button>
-        </div>
-      </div>
-    </main>
-  </div>
-</body>
-</html>

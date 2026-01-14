@@ -94,51 +94,61 @@
       <section class="px-4 py-4">
         <div class="card page-card shadow-sm">
           <div class="card-body p-4">
+            <!-- header row: title + two separate outlined buttons -->
             <div class="d-flex justify-content-between align-items-center mb-3">
               <div>
                 <h5 class="card-title mb-0">Describe your video</h5>
               </div>
-              <div>
-                <div class="btn-group" role="group" aria-label="modes">
-                  <button class="btn btn-outline-secondary btn-sm">Manual mode</button>
-                  <button class="btn btn-outline-secondary btn-sm">Re-write</button>
-                </div>
+
+              <!-- separated buttons (not a btn-group) -->
+              <div class="d-flex align-items-center gap-2">
+                <button id="manualBtn" class="mode-btn" type="button" aria-pressed="false"><span class="icon-placeholder" aria-hidden="true"></span>Manual mode</button>
+                <button id="rewriteBtn" class="mode-btn mode-btn--accent" type="button" aria-pressed="false"><i class="bi bi-arrow-clockwise me-2"></i>Re-write</button>
               </div>
             </div>
 
-            <!-- Describe textarea -->
-            <div class="mb-4">
-              <textarea class="form-control form-control-lg" rows="4" placeholder="How to grow your start up faster..."></textarea>
+            <!-- Describe textarea + preview -->
+            <div class="mb-2">
+              <textarea id="videoDesc" class="form-control form-control-lg" rows="4" placeholder="How to grow your start up faster..." maxlength="1000"></textarea>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <small class="text-muted">Write a short description for your video</small>
+                <small id="charCount" class="text-muted">0 / 1000</small>
+              </div>
+            </div>
+
+            <div class="mb-4 d-flex justify-content-end">
+              <button class="btn btn-outline-primary btn-sm me-2" id="previewBtn">Preview</button>
+              <button class="btn btn-outline-secondary btn-sm" id="clearDesc">Clear</button>
             </div>
 
             <!-- Choose number of characters -->
             <div class="mb-4">
               <label class="form-label fw-semibold">Choose number of characters</label>
-              <div class="btn-options d-flex gap-2 mt-2">
-                <button class="option btn btn-outline-secondary selected">1</button>
-                <button class="option btn btn-outline-secondary">2</button>
-                <button class="option btn btn-outline-secondary">3</button>
-                <button class="option btn btn-outline-secondary">4</button>
-                <button class="option btn btn-outline-secondary">5</button>
-                <button class="option btn btn-outline-secondary">Choose auto</button>
+              <div class="btn-options d-flex gap-2 mt-2" role="tablist">
+                <button class="option btn btn-outline-secondary selected" data-value="1">1</button>
+                <button class="option btn btn-outline-secondary" data-value="2">2</button>
+                <button class="option btn btn-outline-secondary" data-value="3">3</button>
+                <button class="option btn btn-outline-secondary" data-value="4">4</button>
+                <button class="option btn btn-outline-secondary" data-value="5">5</button>
+                <button class="option btn btn-outline-secondary" data-value="auto">Choose auto</button>
               </div>
             </div>
 
             <!-- Promotional content -->
             <div class="mb-4">
               <label class="form-label fw-semibold">Describe the content you'd like to promote</label>
-              <textarea class="form-control" rows="3" placeholder="Enter promotional details.... (optional)"></textarea>
+              <textarea id="promo" class="form-control" rows="3" placeholder="Enter promotional details.... (optional)"></textarea>
             </div>
 
             <!-- Video Duration -->
             <div class="mb-4">
               <label class="form-label fw-semibold">Video Duration</label>
               <div class="btn-options d-flex gap-2 mt-2 flex-wrap">
-                <button class="option btn btn-outline-secondary selected"><i class="bi bi-stopwatch me-2"></i>0 to 15 seconds</button>
-                <button class="option btn btn-outline-secondary"><i class="bi bi-stopwatch me-2"></i>Up to 1 Min</button>
-                <button class="option btn btn-outline-secondary"><i class="bi bi-stopwatch me-2"></i>Up to 2 Min</button>
-                <button class="option btn btn-outline-secondary"><i class="bi bi-stopwatch me-2"></i>Up to 3 Min</button>
-                <button class="option btn btn-outline-secondary"><i class="bi bi-stopwatch me-2"></i>Up to 5 Min</button>
+                <button class="option btn btn-outline-secondary selected" data-value="15"><i class="bi bi-stopwatch me-2"></i>0 to 15 seconds</button>
+                <button class="option btn btn-outline-secondary" data-value="60"><i class="bi bi-stopwatch me-2"></i>Up to 1 Min</button>
+                <button class="option btn btn-outline-secondary" data-value="120"><i class="bi bi-stopwatch me-2"></i>Up to 2 Min</button>
+                <button class="option btn btn-outline-secondary" data-value="180"><i class="bi bi-stopwatch me-2"></i>Up to 3 Min</button>
+                <button class="option btn btn-outline-secondary" data-value="300"><i class="bi bi-stopwatch me-2"></i>Up to 5 Min</button>
               </div>
             </div>
 
@@ -146,9 +156,9 @@
             <div class="mb-4">
               <label class="form-label fw-semibold">Aspect Ratio</label>
               <div class="btn-options d-flex gap-2 mt-2">
-                <button class="option btn btn-outline-secondary selected"><i class="bi bi-aspect-ratio me-2"></i>16:9</button>
-                <button class="option btn btn-outline-secondary"><i class="bi bi-aspect-ratio me-2"></i>9:16</button>
-                <button class="option btn btn-outline-secondary"><i class="bi bi-aspect-ratio me-2"></i>1:1</button>
+                <button class="option btn btn-outline-secondary selected" data-value="16:9"><i class="bi bi-aspect-ratio me-2"></i>16:9</button>
+                <button class="option btn btn-outline-secondary" data-value="9:16"><i class="bi bi-aspect-ratio me-2"></i>9:16</button>
+                <button class="option btn btn-outline-secondary" data-value="1:1"><i class="bi bi-aspect-ratio me-2"></i>1:1</button>
               </div>
             </div>
 
@@ -156,35 +166,35 @@
             <div class="mb-4">
               <label class="form-label fw-semibold d-block">AI model</label>
               <div class="d-flex gap-3 flex-wrap mt-2 ai-models">
-                <button class="model option btn btn-outline-secondary selected">
+                <button class="model option btn btn-outline-secondary selected" data-model="gpt5">
                   <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-chat-left-text-fill"></i>
                     <span>GPT 5</span>
                   </div>
                 </button>
 
-                <button class="model option btn btn-outline-secondary">
+                <button class="model option btn btn-outline-secondary" data-model="claude">
                   <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-sparkles"></i>
                     <span>Claude</span>
                   </div>
                 </button>
 
-                <button class="model option btn btn-outline-secondary">
+                <button class="model option btn btn-outline-secondary" data-model="gemini">
                   <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-gem"></i>
                     <span>Gemini</span>
                   </div>
                 </button>
 
-                <button class="model option btn btn-outline-secondary">
+                <button class="model option btn btn-outline-secondary" data-model="grok">
                   <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-lightning-charge-fill"></i>
                     <span>Grok</span>
                   </div>
                 </button>
 
-                <button class="model option btn btn-outline-secondary">
+                <button class="model option btn btn-outline-secondary" data-model="llama">
                   <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-infinity"></i>
                     <span>Llama</span>
@@ -194,7 +204,7 @@
             </div>
 
             <!-- Placeholder for more content -->
-            <div style="height:200px"></div>
+            <div style="height:160px"></div>
           </div>
         </div>
       </section>
@@ -203,30 +213,116 @@
       <div class="bottom-actions">
         <div class="container-fluid d-flex justify-content-between align-items-center px-4 py-3">
           <button class="btn btn-light btn-lg rounded-pill"><i class="bi bi-chevron-left"></i> Back</button>
-          <button class="btn btn-primary btn-lg rounded-pill">Proceed <i class="bi bi-chevron-right ms-2"></i></button>
+          <button class="btn btn-primary btn-lg rounded-pill" id="proceedBtn">Proceed <i class="bi bi-chevron-right ms-2"></i></button>
         </div>
       </div>
     </main>
   </div>
 
-  <!-- Bootstrap JS (optional) -->
+  <!-- Preview Modal (Bootstrap) -->
+  <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="previewModalLabel">Preview — Video Description</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h6 class="mb-2">Description</h6>
+          <div id="previewDesc" class="p-3 border rounded bg-light"></div>
+
+          <h6 class="mt-3">Promotional details</h6>
+          <div id="previewPromo" class="p-3 border rounded bg-light"></div>
+
+          <div class="mt-3 small text-muted">
+            Selected model: <span id="previewModel">GPT 5</span> · Duration: <span id="previewDuration">0-15s</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="confirmCreate" type="button" class="btn btn-primary">Use these settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (bundle includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Small JS for options toggle -->
+  <!-- Small JS for interactions -->
   <script>
-    document.querySelectorAll('.option').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const group = btn.parentElement;
-        // If the group has multiple option children -> toggling "single-select"
-        if (group && [...group.children].filter(c=>c.classList).includes(btn)) {
-          // single-select: remove selected from siblings
-          [...group.querySelectorAll('.option')].forEach(sib => sib.classList.remove('selected'));
-          btn.classList.add('selected');
-        } else {
-          // fallback toggle
-          btn.classList.toggle('selected');
-        }
+    // Character counter
+    const desc = document.getElementById('videoDesc');
+    const charCount = document.getElementById('charCount');
+    const MAX = desc.getAttribute('maxlength') || 1000;
+    charCount.textContent = (desc.value.length) + ' / ' + MAX;
+    desc.addEventListener('input', () => {
+      charCount.textContent = desc.value.length + ' / ' + MAX;
+    });
+
+    // Option buttons single-select behavior
+    document.querySelectorAll('.btn-options').forEach(group => {
+      group.addEventListener('click', (e) => {
+        const btn = e.target.closest('.option');
+        if (!btn) return;
+        // remove selected in this group
+        group.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
       });
+    });
+
+    // Preview modal - show current values
+    const previewBtn = document.getElementById('previewBtn');
+    const previewBtnHeader = document.getElementById('previewBtnHeader');
+    const previewModalEl = document.getElementById('previewModal');
+    const preview = new bootstrap.Modal(previewModalEl);
+
+    function buildPreview() {
+      document.getElementById('previewDesc').textContent = desc.value || '(no description)';
+      document.getElementById('previewPromo').textContent = document.getElementById('promo').value || '(no promotional details)';
+      const selectedModel = document.querySelector('.ai-models .option.selected')?.dataset.model || 'gpt5';
+      const durationValue = document.querySelector('.btn-options .option.selected')?.dataset.value || '15';
+      document.getElementById('previewModel').textContent = selectedModel;
+      document.getElementById('previewDuration').textContent = durationValue === '15' ? '0-15s' : durationValue + 's';
+    }
+
+    previewBtn.addEventListener('click', () => {
+      buildPreview();
+      preview.show();
+    });
+    previewBtnHeader.addEventListener('click', () => {
+      buildPreview();
+      preview.show();
+    });
+
+    // Clear description quickly
+    document.getElementById('clearDesc').addEventListener('click', () => {
+      desc.value = '';
+      desc.dispatchEvent(new Event('input'));
+    });
+
+    // Proceed button behavior (placeholder)
+    document.getElementById('proceedBtn').addEventListener('click', () => {
+      alert('Proceed clicked — hook this to your create workflow.');
+    });
+
+    // Confirm Create in modal (placeholder)
+    document.getElementById('confirmCreate').addEventListener('click', () => {
+      preview.hide();
+      // You can collect the values and send to your backend here
+      alert('Settings confirmed — implement create workflow.');
+    });
+
+    // Manual / Rewrite toggle
+    const manualBtn = document.getElementById('manualBtn');
+    const rewriteBtn = document.getElementById('rewriteBtn');
+    manualBtn && manualBtn.addEventListener('click', () => {
+      manualBtn.classList.add('active');
+      rewriteBtn && rewriteBtn.classList.remove('active');
+    });
+    rewriteBtn && rewriteBtn.addEventListener('click', () => {
+      rewriteBtn.classList.add('active');
+      manualBtn && manualBtn.classList.remove('active');
     });
   </script>
 </body>

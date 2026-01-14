@@ -1,239 +1,233 @@
-import { useState } from 'react';
-import { RefreshCw, Sparkles, ChevronLeft, ChevronRight, Coins } from 'lucide-react';
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animify — Create Video</title>
 
-export function CreateVideoForm() {
-  const [selectedCharacters, setSelectedCharacters] = useState(1);
-  const [selectedDuration, setSelectedDuration] = useState('0-15');
-  const [selectedAspectRatio, setSelectedAspectRatio] = useState('16:9');
-  const [selectedAIModel, setSelectedAIModel] = useState('gpt5');
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  const characterOptions = [1, 2, 3, 4, 5, 'auto'];
-  
-  const durationOptions = [
-    { value: '0-15', label: '0 to 15 seconds', icon: '⏱️' },
-    { value: '1min', label: 'Up to 1 Min', icon: '⏱️' },
-    { value: '2min', label: 'Up to 2 Min', icon: '⏱️' },
-    { value: '3min', label: 'Up to 3 Min', icon: '⏱️' },
-    { value: '5min', label: 'Up to 5 Min', icon: '⏱️' },
-  ];
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-  const aspectRatioOptions = [
-    { value: '16:9', label: '16:9', icon: '📺' },
-    { value: '9:16', label: '9:16', icon: '📱' },
-    { value: '1:1', label: '1:1', icon: '⬛' },
-  ];
+  <!-- Optional Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  const aiModels = [
-    { value: 'gpt5', label: 'GPT 5', icon: '🎯', stars: 5 },
-    { value: 'claude', label: 'Claude', icon: '✨', stars: 3 },
-    { value: 'gemini', label: 'Gemini', icon: '💎', stars: 5 },
-    { value: 'grok', label: 'Grok', icon: '⚡', stars: 4 },
-    { value: 'llama', label: 'Llama', icon: '∞', stars: 4 },
-  ];
-
-  return (
-    <div className="max-w-[900px] mx-auto p-6">
-      {/* Top Buttons */}
-      <div className="flex justify-end gap-3 mb-6">
-        <button className="px-5 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-          Manual mode
-        </button>
-        <button className="px-5 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
-          <RefreshCw className="w-4 h-4 text-purple-600" />
-          Re-write
-        </button>
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app d-flex">
+    <!-- Sidebar -->
+    <aside class="sidebar d-flex flex-column text-white">
+      <div class="p-4 logo-section">
+        <div class="d-flex align-items-center gap-2">
+          <div class="brand-mark">a</div>
+          <div class="brand-text">animify</div>
+        </div>
       </div>
 
-      {/* Main Form */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-        {/* Video Description */}
-        <div className="mb-8">
-          <label className="block mb-3 font-medium text-gray-900">
-            Describe your video
-          </label>
-          <textarea
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-            rows={4}
-            placeholder="How to grow your start up faster..."
-          />
+      <nav class="nav flex-column px-3">
+        <a class="nav-link text-white d-flex align-items-center gap-2" href="#">
+          <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+
+        <a class="nav-link active d-flex align-items-center gap-2" href="#">
+          <i class="bi bi-camera-video"></i> Create video
+        </a>
+
+        <a class="nav-link d-flex align-items-center gap-2" href="#">
+          <i class="bi bi-robot"></i> AI characters
+        </a>
+
+        <a class="nav-link d-flex align-items-center gap-2" href="#">
+          <i class="bi bi-play-btn"></i> Videos
+        </a>
+
+        <a class="nav-link d-flex align-items-center gap-2" href="#">
+          <i class="bi bi-joystick"></i> Animations
+        </a>
+
+        <a class="nav-link d-flex align-items-center gap-2" href="#">
+          <i class="bi bi-list-check"></i> Video queue
+        </a>
+
+        <a class="nav-link d-flex align-items-center gap-2" href="#">
+          <i class="bi bi-cash-stack"></i> Transactions
+        </a>
+
+        <a class="nav-link d-flex align-items-center gap-2 mt-auto" href="#">
+          <i class="bi bi-gear"></i> Settings
+        </a>
+      </nav>
+
+      <div class="px-4 py-3 footer-logos">
+        <div class="small">TEKNIKFORCE</div>
+        <div class="social-icons mt-2">
+          <i class="bi bi-youtube"></i>
+          <i class="bi bi-facebook"></i>
+          <i class="bi bi-x"></i>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-grow-1 content-area">
+      <!-- Top bar -->
+      <header class="topbar d-flex justify-content-between align-items-center px-4 py-3">
+        <div class="breadcrumb">
+          <i class="bi bi-columns-gap me-2"></i>
+          <span class="fw-semibold">Dashboard</span>
+          <small class="text-muted ms-2">| Dashboard | Tutorial</small>
         </div>
 
-        {/* Choose number of characters */}
-        <div className="mb-8">
-          <label className="block mb-3 font-medium text-gray-900">
-            Choose number of characters
-          </label>
-          <div className="flex gap-3">
-            {characterOptions.map((option) => (
-              <button
-                key={option}
-                onClick={() => setSelectedCharacters(option === 'auto' ? 'auto' : Number(option))}
-                className={`flex-1 px-4 py-3 border-2 rounded-lg transition-all ${
-                  selectedCharacters === option
-                    ? 'border-purple-600 bg-purple-50 text-purple-700'
-                    : 'border-gray-300 hover:border-gray-400 text-gray-700'
-                }`}
-              >
-                {option === 'auto' ? 'Choose auto' : option}
-              </button>
-            ))}
-          </div>
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-light btn-sm rounded-pill"><i class="bi bi-award-fill text-warning"></i> Admin</button>
+          <div class="coins badge bg-light text-dark"> <i class="bi bi-coin"></i> 2480</div>
+          <button class="btn btn-outline-secondary btn-sm rounded-circle"><i class="bi bi-bell"></i></button>
+          <button class="btn btn-outline-secondary btn-sm rounded-circle"><i class="bi bi-person-circle"></i></button>
         </div>
+      </header>
 
-        {/* Promotional Content */}
-        <div className="mb-8">
-          <label className="block mb-3 font-medium text-gray-900">
-            Describe the content you'd like to promote
-          </label>
-          <textarea
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-            rows={4}
-            placeholder="Enter promotional details.... (optional)"
-          />
-        </div>
-
-        {/* Video Duration */}
-        <div className="mb-8">
-          <label className="block mb-3 font-medium text-gray-900">
-            Video Duration
-          </label>
-          <div className="flex gap-3">
-            {durationOptions.map((option) => (
-              <button
-                key={option.value}
-                onClick={() => setSelectedDuration(option.value)}
-                className={`flex-1 px-4 py-3 border-2 rounded-lg transition-all flex items-center justify-center gap-2 ${
-                  selectedDuration === option.value
-                    ? 'border-purple-600 bg-purple-50 text-purple-700'
-                    : 'border-gray-300 hover:border-gray-400 text-gray-700'
-                }`}
-              >
-                <Sparkles className="w-4 h-4 text-purple-600" />
-                <span className="text-sm">{option.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Aspect Ratio */}
-        <div className="mb-8">
-          <label className="block mb-3 font-medium text-gray-900">
-            Aspect Ratio
-          </label>
-          <div className="flex gap-3">
-            {aspectRatioOptions.map((option) => (
-              <button
-                key={option.value}
-                onClick={() => setSelectedAspectRatio(option.value)}
-                className={`px-6 py-3 border-2 rounded-lg transition-all flex items-center justify-center gap-2 ${
-                  selectedAspectRatio === option.value
-                    ? 'border-purple-600 bg-purple-50 text-purple-700'
-                    : 'border-gray-300 hover:border-gray-400 text-gray-700'
-                }`}
-              >
-                <div className={`w-6 h-6 border-2 ${
-                  selectedAspectRatio === option.value ? 'border-purple-600' : 'border-gray-400'
-                } rounded flex items-center justify-center`}>
-                  {option.value === '16:9' && (
-                    <div className="w-4 h-2.5 border-2 border-current rounded-sm"></div>
-                  )}
-                  {option.value === '9:16' && (
-                    <div className="w-2 h-4 border-2 border-current rounded-sm"></div>
-                  )}
-                  {option.value === '1:1' && (
-                    <div className="w-3 h-3 border-2 border-current rounded-sm"></div>
-                  )}
+      <!-- Page content -->
+      <section class="px-4 py-4">
+        <div class="card page-card shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <h5 class="card-title mb-0">Describe your video</h5>
+              </div>
+              <div>
+                <div class="btn-group" role="group" aria-label="modes">
+                  <button class="btn btn-outline-secondary btn-sm">Manual mode</button>
+                  <button class="btn btn-outline-secondary btn-sm">Re-write</button>
                 </div>
-                <span>{option.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+              </div>
+            </div>
 
-        {/* AI Model */}
-        <div className="mb-8">
-          <label className="block mb-3 font-medium text-gray-900">
-            AI model
-          </label>
-          <div className="flex gap-3 mb-3">
-            {aiModels.map((model) => (
-              <div key={model.value} className="flex-1 flex flex-col items-center">
-                <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <span
-                      key={i}
-                      className={`text-sm ${
-                        i < model.stars ? 'text-yellow-400' : 'text-gray-300'
-                      }`}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <button
-                  onClick={() => setSelectedAIModel(model.value)}
-                  className={`w-full px-4 py-3 border-2 rounded-lg transition-all flex items-center justify-center gap-2 ${
-                    selectedAIModel === model.value
-                      ? 'border-purple-600 bg-purple-50 text-purple-700'
-                      : 'border-gray-300 hover:border-gray-400 text-gray-700'
-                  }`}
-                >
-                  {model.value === 'gpt5' && (
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-                    </svg>
-                  )}
-                  {model.value === 'claude' && (
-                    <svg className="w-5 h-5 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                  )}
-                  {model.value === 'gemini' && (
-                    <svg className="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/>
-                    </svg>
-                  )}
-                  {model.value === 'grok' && (
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M13 2L3 14h8l-1 8 10-12h-8z"/>
-                    </svg>
-                  )}
-                  {model.value === 'llama' && (
-                    <svg className="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M12 2v20M2 12h20"/>
-                      <circle cx="12" cy="12" r="8"/>
-                    </svg>
-                  )}
-                  <span className="text-sm font-medium">{model.label}</span>
+            <!-- Describe textarea -->
+            <div class="mb-4">
+              <textarea class="form-control form-control-lg" rows="4" placeholder="How to grow your start up faster..."></textarea>
+            </div>
+
+            <!-- Choose number of characters -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Choose number of characters</label>
+              <div class="btn-options d-flex gap-2 mt-2">
+                <button class="option btn btn-outline-secondary selected">1</button>
+                <button class="option btn btn-outline-secondary">2</button>
+                <button class="option btn btn-outline-secondary">3</button>
+                <button class="option btn btn-outline-secondary">4</button>
+                <button class="option btn btn-outline-secondary">5</button>
+                <button class="option btn btn-outline-secondary">Choose auto</button>
+              </div>
+            </div>
+
+            <!-- Promotional content -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Describe the content you'd like to promote</label>
+              <textarea class="form-control" rows="3" placeholder="Enter promotional details.... (optional)"></textarea>
+            </div>
+
+            <!-- Video Duration -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Video Duration</label>
+              <div class="btn-options d-flex gap-2 mt-2 flex-wrap">
+                <button class="option btn btn-outline-secondary selected"><i class="bi bi-stopwatch me-2"></i>0 to 15 seconds</button>
+                <button class="option btn btn-outline-secondary"><i class="bi bi-stopwatch me-2"></i>Up to 1 Min</button>
+                <button class="option btn btn-outline-secondary"><i class="bi bi-stopwatch me-2"></i>Up to 2 Min</button>
+                <button class="option btn btn-outline-secondary"><i class="bi bi-stopwatch me-2"></i>Up to 3 Min</button>
+                <button class="option btn btn-outline-secondary"><i class="bi bi-stopwatch me-2"></i>Up to 5 Min</button>
+              </div>
+            </div>
+
+            <!-- Aspect Ratio -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Aspect Ratio</label>
+              <div class="btn-options d-flex gap-2 mt-2">
+                <button class="option btn btn-outline-secondary selected"><i class="bi bi-aspect-ratio me-2"></i>16:9</button>
+                <button class="option btn btn-outline-secondary"><i class="bi bi-aspect-ratio me-2"></i>9:16</button>
+                <button class="option btn btn-outline-secondary"><i class="bi bi-aspect-ratio me-2"></i>1:1</button>
+              </div>
+            </div>
+
+            <!-- AI model -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold d-block">AI model</label>
+              <div class="d-flex gap-3 flex-wrap mt-2 ai-models">
+                <button class="model option btn btn-outline-secondary selected">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-chat-left-text-fill"></i>
+                    <span>GPT 5</span>
+                  </div>
+                </button>
+
+                <button class="model option btn btn-outline-secondary">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-sparkles"></i>
+                    <span>Claude</span>
+                  </div>
+                </button>
+
+                <button class="model option btn btn-outline-secondary">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-gem"></i>
+                    <span>Gemini</span>
+                  </div>
+                </button>
+
+                <button class="model option btn btn-outline-secondary">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                    <span>Grok</span>
+                  </div>
+                </button>
+
+                <button class="model option btn btn-outline-secondary">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-infinity"></i>
+                    <span>Llama</span>
+                  </div>
                 </button>
               </div>
-            ))}
+            </div>
+
+            <!-- Placeholder for more content -->
+            <div style="height:200px"></div>
           </div>
         </div>
+      </section>
 
-        {/* Video AI */}
-        <div className="mb-6">
-          <label className="block mb-3 font-medium text-gray-900">
-            Video AI
-          </label>
-          <div className="flex items-center gap-2 px-4 py-2 bg-yellow-50 border border-yellow-200 rounded-lg w-fit">
-            <Coins className="w-4 h-4 text-yellow-600" />
-            <span className="text-sm text-gray-700">200 / second</span>
-          </div>
+      <!-- Sticky bottom actions -->
+      <div class="bottom-actions">
+        <div class="container-fluid d-flex justify-content-between align-items-center px-4 py-3">
+          <button class="btn btn-light btn-lg rounded-pill"><i class="bi bi-chevron-left"></i> Back</button>
+          <button class="btn btn-primary btn-lg rounded-pill">Proceed <i class="bi bi-chevron-right ms-2"></i></button>
         </div>
       </div>
+    </main>
+  </div>
 
-      {/* Bottom Buttons */}
-      <div className="flex items-center justify-between mt-6">
-        <button className="px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
-          <ChevronLeft className="w-4 h-4" />
-          <span>Back</span>
-        </button>
-        <button className="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2">
-          <span>Proceed</span>
-          <ChevronRight className="w-4 h-4" />
-        </button>
-      </div>
-    </div>
-  );
-}
+  <!-- Bootstrap JS (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Small JS for options toggle -->
+  <script>
+    document.querySelectorAll('.option').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const group = btn.parentElement;
+        // If the group has multiple option children -> toggling "single-select"
+        if (group && [...group.children].filter(c=>c.classList).includes(btn)) {
+          // single-select: remove selected from siblings
+          [...group.querySelectorAll('.option')].forEach(sib => sib.classList.remove('selected'));
+          btn.classList.add('selected');
+        } else {
+          // fallback toggle
+          btn.classList.toggle('selected');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

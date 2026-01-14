@@ -110,7 +110,7 @@ body{
 .bottom-actions {
   position: sticky;
   bottom: 0;
-  /* Forces the bar to span from the sidebar to the screen edge */
+  /* FIX WIDTH: Anchors the bar from the sidebar to the screen edge */
   left: var(--sidebar-width);
   right: 0;
   width: auto; 
@@ -118,23 +118,34 @@ body{
   background: white;
   z-index: 40;
   border-top: 1px solid #eee;
+  
+  /* INCREASE HEIGHT: Adding vertical padding makes the bar taller */
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-/* Align buttons to left and right with consistent padding */
+/* Align buttons to left and right */
 .bottom-actions .container-fluid {
   display: flex;
-  justify-content: space-between; /* Pushes buttons to opposite sides */
+  justify-content: space-between;
   align-items: center;
-  padding: 16px 24px; /* Adjust these numbers to increase/decrease bar height/padding */
+  padding-left: 40px !important;
+  padding-right: 40px !important;
   max-width: none;
 }
 
-/* Proceed button style */
+/* INCREASE BUTTON SIZE: Custom padding for the buttons */
+.bottom-actions .btn-lg {
+  padding: 12px 35px; /* Taller and wider buttons */
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px !important;
+}
+
+/* Proceed button color */
 .btn-primary {
   background: var(--purple);
   border-color: var(--purple);
-  padding-left: 30px;
-  padding-right: 30px;
 }
 .btn-primary:hover {
   background: var(--purple-dark);

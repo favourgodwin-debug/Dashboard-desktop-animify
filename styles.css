@@ -1,56 +1,47 @@
-:root {
-  --purple: #6c5ce7;
-  --purple-dark: #a29bfe;
-  --sidebar-width: 260px;
+/* START PASTE: Updated Borders & Text Size */
+
+/* 1. Description Field Text Size */
+.video-input { 
+  font-size: 14px !important; /* Smaller text as requested */
+  color: #555; 
+  padding: 12px; 
+  border-radius: 8px; 
+  border: 1px solid #e0e2e6; 
 }
 
-body { font-family: 'Nunito Sans', sans-serif; background-color: #f4f7fe; }
-
-/* Sidebar Icons */
-.sidebar .nav-link i { width: 24px; height: 24px; font-size: 20px; display: flex; align-items: center; justify-content: center; flex: none; }
-
-/* Topbar Alignment & Padding Fix */
-.topbar { background: white; border-bottom: 1px solid #eee; height: 70px; }
-.coins-badge {
-  padding: 6px 16px;
-  background: #f8f9fa;
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 700;
+/* 2. AI Model & Duration Button Borders */
+/* We use a lighter border #e0e2e6 to match the "clean" Figma design */
+.model-opt, .option-btn {
+  padding: 10px 18px;
+  border: 1px solid #e0e2e6; 
+  border-radius: 10px;
+  background: white;
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid #dee2e6;
+  font-weight: 500;
+  color: #444;
+  transition: all 0.2s ease;
 }
-.btn-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #dee2e6; display: flex; align-items: center; justify-content: center; color: #666; }
 
-/* Description Input - Reduced Text Size */
-.video-input { font-size: 15px !important; color: #444; padding: 15px; border-radius: 12px; border: 1px solid #e0e0e0; }
-.video-input::placeholder { font-size: 14px; color: #aaa; }
-
-/* AI Model Options */
-.model-opt { padding: 10px 20px; border: 1px solid #dee2e6; border-radius: 10px; background: white; display: flex; align-items: center; gap: 8px; font-weight: 600; }
-.model-opt.selected { border-color: var(--purple); color: var(--purple); background: #f0edff; }
-
-/* Bottom Action Bar: Complete Width & Height */
-.bottom-actions {
-  position: sticky;
-  bottom: 0;
-  left: var(--sidebar-width);
-  right: 0;
-  width: auto;
-  background: white;
-  z-index: 100;
-  border-top: 1px solid #eee;
-  padding: 20px 0;
+/* Selected State: Match your purple brand color */
+.model-opt.selected, .option-btn.selected {
+  border-color: var(--purple);
+  background-color: #f5f3ff; /* Very light purple tint */
+  color: var(--purple);
+  border-width: 1.5px;
 }
-.bottom-actions .btn-lg { padding: 12px 35px; font-weight: 700; font-size: 1.1rem; }
-.btn-primary { background: var(--purple); border: none; }
 
-/* Sidebar width logic */
-.sidebar { width: var(--sidebar-width); min-height: 100vh; background: var(--purple); position: sticky; top: 0; }
-
-@media (max-width: 992px) {
-  .sidebar { display: none; }
-  .bottom-actions { left: 0; }
+/* 3. Duration specific button styling */
+.option-btn {
+  font-size: 13px;
 }
+
+/* Ensure the topbar elements stay aligned */
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* END PASTE */

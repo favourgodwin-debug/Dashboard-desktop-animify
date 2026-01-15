@@ -1,110 +1,413 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Animify — Create Video</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="app d-flex">
-    <aside class="sidebar d-flex flex-column text-white">
-      <div class="p-4 logo-section">
-        <div class="d-flex align-items-center gap-2">
-          <div class="brand-mark">a</div>
-          <div class="brand-text">animify</div>
-        </div>
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Animify </title>
+      <link rel="icon" type="image/png" href="assets/images/favicon.png">
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+      <link rel="stylesheet" href="assets/css/style.css">
+      <link rel="stylesheet" href="assets/plugings/fontawesome-free-5.15.4-web/css/all.min.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link
+         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+         rel="stylesheet">
+   </head>
+   <body>
+      <!-- Side-Nav -->
+      <div class="side-navbar active-nav flex-wrap flex-column" id="sidebar">
+         <a href="#" class="nav-link h3 text-white my-3 text-center">
+         <img src="assets/images/logo.png" width="200" class="open-menu mx-auto" alt="image">
+         <img src="assets/images/favicon.png" width="60" class="close-menu" alt="image">
+         </a>
+         <ul class="nav flex-column text-white w-100 sidebar-ul">
+            <li class="nav-link active">
+               <div class="d-flex align-items-center gap-1">
+                  <img src="assets/images/dashboard.svg" class="ms-2 img-set sidebar-icon" alt="image">
+                  <span class="ms-1">Dashboard</span>
+               </div>
+            </li>
+            <li class="nav-link ">
+               <div class="d-flex align-items-center gap-1">
+                  <img src="assets/images/create-vid.svg" class="ms-2 img-set sidebar-icon" alt="image">
+                  <span class="ms-1">Create Video</span>
+               </div>
+            </li>
+            <li class="nav-link ">
+               <div class="d-flex align-items-center gap-1">
+                  <img src="assets/images/ai-char.svg" class="ms-2 img-set sidebar-icon" alt="image">
+                  <span class="ms-1">AI Characters</span>
+               </div>
+            </li>
+            <li class="nav-link ">
+               <div class="d-flex align-items-center gap-1">
+                  <img src="assets/images/vid.svg" class="ms-2 img-set sidebar-icon" alt="image">
+                  <span class="ms-1">Videos</span>
+               </div>
+            </li>
+            <li class="nav-link ">
+               <div class="d-flex align-items-center gap-1">
+                  <img src="assets/images/ri_movie-2-ai-fill.svg" class="ms-2 img-set sidebar-icon" alt="image">
+                  <span class="ms-1">Animations</span>
+               </div>
+            </li>
+            <li class="nav-link ">
+               <div class="d-flex align-items-center gap-1">
+                  <img src="assets/images/vid-queue.svg" class="ms-2 img-set sidebar-icon" alt="image">
+                  <span class="ms-1">Video Queue</span>
+               </div>
+            </li>
+            <li class="nav-link ">
+               <div class="d-flex align-items-center gap-1">
+                  <img src="assets/images/trans.svg" class="ms-2 img-set sidebar-icon" alt="image">
+                  <span class="ms-1">Transaction</span>
+               </div>
+            </li>
+            <li class="nav-link ">
+               <div class="d-flex align-items-center gap-1">
+                  <img src="assets/images/settings.svg" class="ms-2 img-set sidebar-icon" alt="image">
+                  <span class="ms-1">Settings</span>
+               </div>
+            </li>
+         </ul>
+         <div class="sidebar-footer">
+            <a href="#">
+            <img src="assets/images/logoaboutus.png" class="w-100 open-menu" alt="image">
+            <img src="assets/images/tf-logo.png" class="close-menu" width="50" alt="image">
+            </a>
+            <div class="d-flex justify-content-center gap-2 mt-2 flex-wrap">
+               <a href="#"><img src="assets/images/facebook.png" width="25" alt="image"></a>
+               <a href="#"><img src="assets/images/youtube.png" width="25" alt="image"></a>
+               <a href="#"><img src="assets/images/twitter.png" width="25" alt="image"></a>
+            </div>
+         </div>
       </div>
-
-      <nav class="nav flex-column px-3" id="sidebarNav">
-        <a class="nav-link text-white d-flex align-items-center gap-2" href="#"><i class="ri-dashboard-horizontal-fill"></i> Dashboard</a>
-        <a class="nav-link active d-flex align-items-center gap-2" href="#"><i class="ri-video-add-fill"></i> Create video</a>
-        <a class="nav-link d-flex align-items-center gap-2" href="#"><i class="ri-robot-2-fill"></i> AI characters</a>
-        <a class="nav-link d-flex align-items-center gap-2" href="#"><i class="ri-play-circle-line"></i> Videos</a>
-        <a class="nav-link d-flex align-items-center gap-2" href="#"><i class="ri-magic-line"></i> Animations</a>
-        <a class="nav-link d-flex align-items-center gap-2" href="#"><i class="ri-list-check"></i> Video queue</a>
-        <a class="nav-link d-flex align-items-center gap-2" href="#"><i class="ri-bank-card-line"></i> Transactions</a>
-        <a class="nav-link d-flex align-items-center gap-2 mt-auto" href="#"><i class="ri-settings-4-line"></i> Settings</a>
-      </nav>
-
-      <div class="px-4 py-3 footer-logos">
-        <div class="small text-white-50">TEKNIKFORCE</div>
-        <div class="social-icons mt-2">
-          <i class="bi bi-youtube me-2"></i><i class="bi bi-facebook me-2"></i><i class="bi bi-twitter-x"></i>
-        </div>
+      <!-- Main Wrapper -->
+      <div class="my-container active-cont">
+         <!-- Top Nav -->
+         <nav class="navbar top-navbar navbar-light d-flex justify-content-between header-sec">
+            <div class="d-flex align-items-center topbar-title-con">
+               <a class="btn border-0" id="menu-btn"><img src="assets/images/burger-bar.png" width="28" alt="image"></a>
+               <img src="assets/images/icon1-dark.png" class="me-0" width="30" alt="image">
+               <div class="d-flex align-items-start flex-column">
+                  <h4 class="m-0 ms-2 page-title">Dashboard</h4>
+                  <span class="bd-item">Dashboard</span>
+               </div>
+            </div>
+            <div>
+               <div class="pe-md-3 pe-2 d-flex gap-2 align-items-center">
+                  <div class="credit-sec">
+                     <img src="assets/images/crown.svg" alt="image"> <span>Admin</span>
+                  </div>
+                  <div class="credit-sec d-md-block d-none">
+                     <img src="assets/images/money.svg" alt="image"> <span>1952</span>
+                  </div>
+                  <div class="nav-item dropdown">
+                     <a href="#" class="nav-link dropdown-toggle top-toggle text-dark" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                     <img class="rounded-circle me-lg-2" src="assets/images/user.png" alt=""
+                        style="width: 40px; height: 40px;">
+                     <span class="d-none d-lg-inline-flex text-dark">Anuj Sharma</span>
+                     </a>
+                     <div
+                        class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 profile-dropdown">
+                        <a href="profile" class="dropdown-item">My Profile</a>
+                        <a href="logout" class="dropdown-item">Log Out</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </nav>
+         <div class="middle-sec nobg-sec">
+            <div class="container-fluid ">
+               <div class="row">
+                  <div class="col-lg-7 mb-3">
+                     <div
+                        class="wel-area d-flex flex-xl-row flex-column gap-xl-4 gap-0 align-items-center bg-white  rounded-4  overflow-hidden position-relative">
+                        <div class="img-box-theme me-3 mb-3">
+                           <img src="assets/images/tf-logo.png" class=" w-100" alt="image">
+                        </div>
+                        <img src="assets/images/remove.png" style="cursor:pointer" width="25" class="remove-img"
+                           alt="image">
+                        <div>
+                           <h2 class="text-white wel-main-text">
+                              Welcome to Animify!
+                           </h2>
+                           <div class="wel-sub-text text-white mb-3">
+                              We've readied everything for you. Make sure you take a look at the tutorials before you
+                              begin.
+                           </div>
+                           <div class="mb-3"></div>
+                           <div>
+                              <a href="https://teknikforce.com/support/" title="Need help? Contact Support" target="_blank"
+                                 class="btn btn-contact me-2 mb-2" >Need help? Contact
+                              Support</a>
+                              <a href="https://teknikforce.com" target="_blank" title="Check out our other products"
+                                 class="btn btn-contact mb-2" >Check out our other
+                              products</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-5 mb-3">
+                     <div
+                        class="wel-area-right d-flex flex-xl-row flex-column gap-xl-4 gap-0 align-items-center bg-white  rounded-4  overflow-hidden position-relative ">
+                        <div class="text-center mb-lg-0 mb-2">
+                           <div class="img-box-theme">
+                              <img src="assets/images/video1.png" class="w-100" alt="image">
+                           </div>
+                          
+                        </div>
+                        <img src="assets/images/remove.png" style="cursor:pointer" width="25" class="remove-img"
+                           alt="image">
+                        <div>
+                           <h4 class=" wel-main-text">Welcome To Animify, Anuj!</h4>
+                           <div class="wel-right-sub-text  mb-3">
+                              Your Account Setup is completed. To get started, watch the video trainings to kick-start
+                              your journey.
+                           </div>
+                            <button class="btn btn-contact mt-3 text-nowrap d-block" title="Watch training videos">Watch
+                           Video</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row justify-content-center">
+                  <div class="col-md-6 col-lg-3">
+                     <div class="create-btn-sec">
+                        <img src="assets/images/v2.png" alt="image">
+                        Your Videos
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                     <div class="create-btn-sec">
+                        <img src="assets/images/v3.png" alt="image">
+                        Transctions
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                     <div class="create-btn-sec">
+                        <img src="assets/images/v1.png" alt="image">
+                        Create Videos
+                     </div>
+                  </div>
+               </div>
+               <div class="row mt-3">
+                  <div class="col-md-12">
+                     <div class="wel-area rounded-4 mb-4">
+                        <div class="d-flex justify-content-between flex-wrap mb-4">
+                           <div class="mt-0 mv-0 sec-title">
+                              Latest Articles
+                           </div>
+                           <div class="position-relative cust-select-con">
+                              <img src="assets/images/calendar.png" class="cal-img" alt="image">
+                              <select class="form-select cust-select-dash">
+                                 <option value="">Select Date Rang</option>
+                                 <option value="">1</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div id="chart">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row mt-3">
+                  <div class="col-md-12">
+                     <div class="wel-area rounded-4 mb-4 px-0 h-auto">
+                        <div class="d-flex px-4 justify-content-between flex-wrap mb-2">
+                           <div class="mt-0 mv-0 sec-title">
+                              <img src="assets/images/create-vid-main.svg" class="icon-set" width="35" alt="image">
+                              History
+                           </div>
+                        </div>
+                        <div class="">
+                           <div class="table-header flex-wrap gap-2">
+                              <div class="d-flex gap-3 align-items-center">
+                                 <div class="d-flex gap-2 align-items-center">
+                                    <label for="results">Results</label>
+                                    <select id="results">
+                                       <option value="10">10</option>
+                                       <option value="25">25</option>
+                                       <option value="50">50</option>
+                                    </select>
+                                 </div>
+                              </div>
+                              <div class="search-box position-relative">
+                                 <input type="text" class="form-control" placeholder="Search...">
+                                 <i class="fas fa-search seh-icon"></i>
+                              </div>
+                           </div>
+                           <div class="table-con dashboard-table">
+                              <table class="animify-table">
+                                 <thead>
+                                    <tr>
+                                       <th>
+                                          <div class="d-flex justify-content-between">
+                                             <span class="table-th-title">#</span>
+                                             <span class="d-flex flex-column">
+                                             <button class="btn btn-transparent btn-arrow"><i
+                                                class="fas fa-angle-up arrow-icon active"></i></button>
+                                             <button class="btn btn-transparent btn-down-arrow"><i
+                                                class="fas fa-angle-down arrow-icon"></i></button>
+                                             </span>
+                                          </div>
+                                       </th>
+                                       <th>
+                                          <div class="d-flex justify-content-between">
+                                             <span class="table-th-title">Title</span>
+                                             <span class="d-flex flex-column">
+                                             <button class="btn btn-transparent btn-arrow"><i
+                                                class="fas fa-angle-up arrow-icon active"></i></button>
+                                             <button class="btn btn-transparent btn-down-arrow"><i
+                                                class="fas fa-angle-down arrow-icon"></i></button>
+                                             </span>
+                                          </div>
+                                       </th>
+                                       <th>
+                                          <div class="d-flex justify-content-between">
+                                             <span class="table-th-title">Status</span>
+                                             <span class="d-flex flex-column">
+                                             <button class="btn btn-transparent btn-arrow"><i
+                                                class="fas fa-angle-up arrow-icon active"></i></button>
+                                             <button class="btn btn-transparent btn-down-arrow"><i
+                                                class="fas fa-angle-down arrow-icon"></i></button>
+                                             </span>
+                                          </div>
+                                       </th>
+                                       <th>
+                                          <div class="d-flex justify-content-between">
+                                             <span class="table-th-title">Last Updated</span>
+                                             <span class="d-flex flex-column">
+                                             <button class="btn btn-transparent btn-arrow"><i
+                                                class="fas fa-angle-up arrow-icon active"></i></button>
+                                             <button class="btn btn-transparent btn-down-arrow"><i
+                                                class="fas fa-angle-down arrow-icon"></i></button>
+                                             </span>
+                                          </div>
+                                       </th>
+                                       <th>
+                                          <div class="d-flex justify-content-between">
+                                             <span class="table-th-title">Credit Used</span>
+                                             <span class="d-flex flex-column">
+                                             <button class="btn btn-transparent btn-arrow"><i
+                                                class="fas fa-angle-up arrow-icon active"></i></button>
+                                             <button class="btn btn-transparent btn-down-arrow"><i
+                                                class="fas fa-angle-down arrow-icon"></i></button>
+                                             </span>
+                                          </div>
+                                       </th>
+                                       <th>
+                                          <div class="d-flex justify-content-between">
+                                             <span class="table-th-title">View</span>
+                                             <span class="d-flex flex-column">
+                                             </span>
+                                          </div>
+                                       </th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>1</td>
+                                       <td>Lorem, ipsum dolor.</td>
+                                       <td>
+                                          <div class="draft-batch">Draft</div>
+                                       </td>
+                                       <td>Subtraction</td>
+                                       <td>32</td>
+                                       <td>
+                                          <div class="d-flex gap-2"><button class="btn btn-view"><i
+                                             class="fas fa-eye"></i></button>
+                                             <button class="btn btn-link"><i class="fas fa-external-link-alt"></i></button>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>1</td>
+                                       <td>Lorem, ipsum dolor.</td>
+                                       <td>
+                                          <div class="pub-batch">Published</div>
+                                       </td>
+                                       <td>Subtraction</td>
+                                       <td>32</td>
+                                       <td>
+                                          <div class="d-flex gap-2"><button class="btn btn-view"><i
+                                             class="fas fa-eye"></i></button>
+                                             <button class="btn btn-link"><i class="fas fa-external-link-alt"></i></button>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>1</td>
+                                       <td>Lorem, ipsum dolor.</td>
+                                       <td>
+                                          <div class="pub-batch">Published</div>
+                                       </td>
+                                       <td>Subtraction</td>
+                                       <td>32</td>
+                                       <td>
+                                          <div class="d-flex gap-2"><button class="btn btn-view"><i
+                                             class="fas fa-eye"></i></button>
+                                             <button class="btn btn-link"><i class="fas fa-external-link-alt"></i></button>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>1</td>
+                                       <td>Lorem, ipsum dolor.</td>
+                                       <td>
+                                          <div class="pub-batch">Published</div>
+                                       </td>
+                                       <td>Subtraction</td>
+                                       <td>32</td>
+                                       <td>
+                                          <div class="d-flex gap-2"><button class="btn btn-view"><i
+                                             class="fas fa-eye"></i></button>
+                                             <button class="btn btn-link"><i class="fas fa-external-link-alt"></i></button>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>1</td>
+                                       <td>Lorem, ipsum dolor.</td>
+                                       <td>
+                                          <div class="pub-batch">Published</div>
+                                       </td>
+                                       <td>Subtraction</td>
+                                       <td>32</td>
+                                       <td>
+                                          <div class="d-flex gap-2"><button class="btn btn-view"><i
+                                             class="fas fa-eye"></i></button>
+                                             <button class="btn btn-link"><i class="fas fa-external-link-alt"></i></button>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <div class="pagination">
+                              <span>Showing <span>1</span> to <span>10</span> of <span>99</span> entries</span>
+                              <div class="page-controls">
+                                 <button class="btn-pre">Previous</button>
+                                 <button class="btn-page active">1</button>
+                                 <button class="btn-page">2</button>
+                                 <button>...</button>
+                                 <button class="btn-page">10</button>
+                                 <button class="btn-nxt">Next</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
-    </aside>
-
-    <main class="flex-grow-1 content-area">
-      <header class="topbar d-flex justify-content-between align-items-center px-4">
-        <div class="breadcrumb d-flex align-items-center mb-0">
-          <i class="ri-layout-grid-line me-2 text-muted"></i>
-          <span class="fw-semibold">Dashboard</span>
-          <small class="text-muted ms-2">| Dashboard | Tutorial</small>
-        </div>
-
-        <div class="topbar-actions d-flex align-items-center gap-3">
-          <button class="btn btn-light btn-sm rounded-pill px-3"><i class="bi bi-award-fill text-warning me-1"></i> Admin</button>
-          <div class="coins-badge"><i class="bi bi-coin text-warning me-1"></i> 2480</div>
-          <button class="btn btn-icon-circle"><i class="bi bi-bell"></i></button>
-          <button class="btn btn-icon-circle"><i class="bi bi-person-circle"></i></button>
-        </div>
-      </header>
-
-      <section class="px-4 py-4">
-        <div class="card page-card shadow-sm border-0">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h5 class="card-title mb-0 fw-bold">Describe your video</h5>
-              <div class="d-flex gap-2">
-                <button class="mode-btn selected">Manual mode</button>
-                <button class="mode-btn"><i class="ri-refresh-line me-1"></i> Re-write</button>
-              </div>
-            </div>
-
-            <div class="mb-2">
-              <textarea id="videoDesc" class="form-control video-input" rows="4" placeholder="How to grow your start up faster..." maxlength="1000"></textarea>
-              <div class="d-flex justify-content-between mt-2">
-                <small class="text-muted">Write a short description for your video</small>
-                <small id="charCount" class="text-muted">0 / 1000</small>
-              </div>
-            </div>
-
-            <div class="mb-4 d-flex justify-content-end">
-              <button class="btn btn-outline-primary btn-sm me-2 rounded-pill px-3">Preview</button>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" id="clearBtn">Clear</button>
-            </div>
-
-            <div class="mb-4">
-              <label class="form-label fw-bold small text-uppercase text-muted">Video Duration</label>
-              <div class="d-flex gap-2 mt-2 flex-wrap" id="durationGroup">
-                <button class="option-btn selected"><i class="ri-time-line"></i> 0 to 15 seconds</button>
-                <button class="option-btn"><i class="ri-time-line"></i> Up to 1 Min</button>
-                <button class="option-btn"><i class="ri-time-line"></i> Up to 2 Min</button>
-                <button class="option-btn"><i class="ri-time-line"></i> Up to 3 Min</button>
-              </div>
-            </div>
-
-            <div class="mb-4">
-              <label class="form-label fw-bold small text-uppercase text-muted">AI model</label>
-              <div class="d-flex gap-3 flex-wrap mt-2" id="modelGroup">
-                <button class="model-opt selected"><i class="ri-openai-fill"></i> GPT 5</button>
-                <button class="model-opt"><i class="ri-sparkling-2-line"></i> Claude</button>
-                <button class="model-opt"><i class="ri-google-fill"></i> Gemini</button>
-                <button class="model-opt"><i class="ri-flashlight-fill"></i> Grok</button>
-              </div>
-            </div>
-
-            <div style="height:120px"></div>
-          </div>
-        </div>
-      </section>
-
-      <div class="bottom-actions">
-        <div class="container-fluid d-flex justify-content-between align-items-center px-4">
+      <script src="assets/js/bootstrap.bundle.min.js"></script>
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/apexcharts.js"></script>
+      <script src="assets/js/main.js"></script>
+   </body>
+</html>

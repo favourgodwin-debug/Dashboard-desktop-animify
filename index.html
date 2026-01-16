@@ -1,413 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Animify </title>
-      <link rel="icon" type="image/png" href="assets/images/favicon.png">
-      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-      <link rel="stylesheet" href="assets/css/style.css">
-      <link rel="stylesheet" href="assets/plugings/fontawesome-free-5.15.4-web/css/all.min.css">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link
-         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-         rel="stylesheet">
-   </head>
-   <body>
-      <!-- Side-Nav -->
-      <div class="side-navbar active-nav flex-wrap flex-column" id="sidebar">
-         <a href="#" class="nav-link h3 text-white my-3 text-center">
-         <img src="assets/images/logo.png" width="200" class="open-menu mx-auto" alt="image">
-         <img src="assets/images/favicon.png" width="60" class="close-menu" alt="image">
-         </a>
-         <ul class="nav flex-column text-white w-100 sidebar-ul">
-            <li class="nav-link active">
-               <div class="d-flex align-items-center gap-1">
-                  <img src="assets/images/dashboard.svg" class="ms-2 img-set sidebar-icon" alt="image">
-                  <span class="ms-1">Dashboard</span>
-               </div>
-            </li>
-            <li class="nav-link ">
-               <div class="d-flex align-items-center gap-1">
-                  <img src="assets/images/create-vid.svg" class="ms-2 img-set sidebar-icon" alt="image">
-                  <span class="ms-1">Create Video</span>
-               </div>
-            </li>
-            <li class="nav-link ">
-               <div class="d-flex align-items-center gap-1">
-                  <img src="assets/images/ai-char.svg" class="ms-2 img-set sidebar-icon" alt="image">
-                  <span class="ms-1">AI Characters</span>
-               </div>
-            </li>
-            <li class="nav-link ">
-               <div class="d-flex align-items-center gap-1">
-                  <img src="assets/images/vid.svg" class="ms-2 img-set sidebar-icon" alt="image">
-                  <span class="ms-1">Videos</span>
-               </div>
-            </li>
-            <li class="nav-link ">
-               <div class="d-flex align-items-center gap-1">
-                  <img src="assets/images/ri_movie-2-ai-fill.svg" class="ms-2 img-set sidebar-icon" alt="image">
-                  <span class="ms-1">Animations</span>
-               </div>
-            </li>
-            <li class="nav-link ">
-               <div class="d-flex align-items-center gap-1">
-                  <img src="assets/images/vid-queue.svg" class="ms-2 img-set sidebar-icon" alt="image">
-                  <span class="ms-1">Video Queue</span>
-               </div>
-            </li>
-            <li class="nav-link ">
-               <div class="d-flex align-items-center gap-1">
-                  <img src="assets/images/trans.svg" class="ms-2 img-set sidebar-icon" alt="image">
-                  <span class="ms-1">Transaction</span>
-               </div>
-            </li>
-            <li class="nav-link ">
-               <div class="d-flex align-items-center gap-1">
-                  <img src="assets/images/settings.svg" class="ms-2 img-set sidebar-icon" alt="image">
-                  <span class="ms-1">Settings</span>
-               </div>
-            </li>
-         </ul>
-         <div class="sidebar-footer">
-            <a href="#">
-            <img src="assets/images/logoaboutus.png" class="w-100 open-menu" alt="image">
-            <img src="assets/images/tf-logo.png" class="close-menu" width="50" alt="image">
-            </a>
-            <div class="d-flex justify-content-center gap-2 mt-2 flex-wrap">
-               <a href="#"><img src="assets/images/facebook.png" width="25" alt="image"></a>
-               <a href="#"><img src="assets/images/youtube.png" width="25" alt="image"></a>
-               <a href="#"><img src="assets/images/twitter.png" width="25" alt="image"></a>
+<div class="middle-sec nobg-sec">
+    <div class="container-fluid">
+        <h4 class="fw-bold mb-4 mt-2" style="color: #334155;">AI Characters Generator</h4>
+
+        <div class="card border-0 shadow-sm p-4" style="border-radius: 15px; background-color: #fff;">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="d-flex border rounded overflow-hidden" style="width: fit-content; border-color: #e2e8f0 !important;">
+                        <button class="btn px-5 py-2 fw-medium border-0" style="background-color: #584CC0; color: white; border-radius: 0;">Prompt to Character</button>
+                        <button class="btn px-5 py-2 fw-medium border-0" style="background-color: transparent; color: #64748b; border-radius: 0;">Image to Character</button>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-      <!-- Main Wrapper -->
-      <div class="my-container active-cont">
-         <!-- Top Nav -->
-         <nav class="navbar top-navbar navbar-light d-flex justify-content-between header-sec">
-            <div class="d-flex align-items-center topbar-title-con">
-               <a class="btn border-0" id="menu-btn"><img src="assets/images/burger-bar.png" width="28" alt="image"></a>
-               <img src="assets/images/icon1-dark.png" class="me-0" width="30" alt="image">
-               <div class="d-flex align-items-start flex-column">
-                  <h4 class="m-0 ms-2 page-title">Dashboard</h4>
-                  <span class="bd-item">Dashboard</span>
-               </div>
+
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="p-4 border rounded" style="background-color: #f8fafc; border-color: #e2e8f0 !important;">
+                        <h6 class="fw-bold mb-4" style="color: #475569;">Generation Options</h6>
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-muted small">Character Name</label>
+                            <input type="text" class="form-control" placeholder="Enter character name..." style="border-radius: 8px; padding: 12px; border: 1px solid #cbd5e1;">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-muted small">Select Model</label>
+                            <select class="form-select" style="border-radius: 8px; padding: 12px; border: 1px solid #cbd5e1;">
+                                <option selected>Qwen Image</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-muted small">Select Image Style</label>
+                            <select class="form-select" style="border-radius: 8px; padding: 12px; border: 1px solid #cbd5e1;">
+                                <option selected disabled>Choose a style...</option>
+                                <option>Anime</option>
+                                <option>Realistic</option>
+                                <option>3D Render</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-muted small">Enter Prompt</label>
+                            <textarea class="form-control" rows="5" placeholder="Describe the character you want to create..." style="border-radius: 8px; border: 1px solid #cbd5e1; resize: none;"></textarea>
+                            <small class="text-muted mt-1 d-block">Describe the character.</small>
+                        </div>
+
+                        <button class="btn w-100 py-3 fw-bold text-white d-flex align-items-center justify-content-center gap-2" style="background-color: #584CC0; border-radius: 12px; border: none;">
+                            <i class="fas fa-magic"></i> Generate Character
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="h-100 border rounded d-flex flex-column" style="background-color: #f8fafc; border-color: #e2e8f0 !important;">
+                        <div class="px-4 py-3 border-bottom" style="background-color: #f1f5f9;">
+                            <h6 class="fw-bold mb-0" style="color: #475569;">Preview</h6>
+                        </div>
+                        <div class="flex-grow-1 d-flex flex-column align-items-center justify-content-center p-5 text-center">
+                            <div class="card border-0 shadow-sm d-flex align-items-center justify-content-center mb-3" style="width: 100%; aspect-ratio: 1/1; border-radius: 15px; border: 1px dashed #cbd5e1 !important; background-color: white;">
+                                <div class="text-center text-muted">
+                                    <i class="far fa-image mb-3" style="font-size: 60px; color: #cbd5e1;"></i>
+                                    <p class="mb-0 px-3">Generated character will appear here</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-               <div class="pe-md-3 pe-2 d-flex gap-2 align-items-center">
-                  <div class="credit-sec">
-                     <img src="assets/images/crown.svg" alt="image"> <span>Admin</span>
-                  </div>
-                  <div class="credit-sec d-md-block d-none">
-                     <img src="assets/images/money.svg" alt="image"> <span>1952</span>
-                  </div>
-                  <div class="nav-item dropdown">
-                     <a href="#" class="nav-link dropdown-toggle top-toggle text-dark" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                     <img class="rounded-circle me-lg-2" src="assets/images/user.png" alt=""
-                        style="width: 40px; height: 40px;">
-                     <span class="d-none d-lg-inline-flex text-dark">Anuj Sharma</span>
-                     </a>
-                     <div
-                        class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 profile-dropdown">
-                        <a href="profile" class="dropdown-item">My Profile</a>
-                        <a href="logout" class="dropdown-item">Log Out</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </nav>
-         <div class="middle-sec nobg-sec">
-            <div class="container-fluid ">
-               <div class="row">
-                  <div class="col-lg-7 mb-3">
-                     <div
-                        class="wel-area d-flex flex-xl-row flex-column gap-xl-4 gap-0 align-items-center bg-white  rounded-4  overflow-hidden position-relative">
-                        <div class="img-box-theme me-3 mb-3">
-                           <img src="assets/images/tf-logo.png" class=" w-100" alt="image">
-                        </div>
-                        <img src="assets/images/remove.png" style="cursor:pointer" width="25" class="remove-img"
-                           alt="image">
-                        <div>
-                           <h2 class="text-white wel-main-text">
-                              Welcome to Animify!
-                           </h2>
-                           <div class="wel-sub-text text-white mb-3">
-                              We've readied everything for you. Make sure you take a look at the tutorials before you
-                              begin.
-                           </div>
-                           <div class="mb-3"></div>
-                           <div>
-                              <a href="https://teknikforce.com/support/" title="Need help? Contact Support" target="_blank"
-                                 class="btn btn-contact me-2 mb-2" >Need help? Contact
-                              Support</a>
-                              <a href="https://teknikforce.com" target="_blank" title="Check out our other products"
-                                 class="btn btn-contact mb-2" >Check out our other
-                              products</a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-5 mb-3">
-                     <div
-                        class="wel-area-right d-flex flex-xl-row flex-column gap-xl-4 gap-0 align-items-center bg-white  rounded-4  overflow-hidden position-relative ">
-                        <div class="text-center mb-lg-0 mb-2">
-                           <div class="img-box-theme">
-                              <img src="assets/images/video1.png" class="w-100" alt="image">
-                           </div>
-                          
-                        </div>
-                        <img src="assets/images/remove.png" style="cursor:pointer" width="25" class="remove-img"
-                           alt="image">
-                        <div>
-                           <h4 class=" wel-main-text">Welcome To Animify, Anuj!</h4>
-                           <div class="wel-right-sub-text  mb-3">
-                              Your Account Setup is completed. To get started, watch the video trainings to kick-start
-                              your journey.
-                           </div>
-                            <button class="btn btn-contact mt-3 text-nowrap d-block" title="Watch training videos">Watch
-                           Video</button>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="row justify-content-center">
-                  <div class="col-md-6 col-lg-3">
-                     <div class="create-btn-sec">
-                        <img src="assets/images/v2.png" alt="image">
-                        Your Videos
-                     </div>
-                  </div>
-                  <div class="col-md-6 col-lg-3">
-                     <div class="create-btn-sec">
-                        <img src="assets/images/v3.png" alt="image">
-                        Transctions
-                     </div>
-                  </div>
-                  <div class="col-md-6 col-lg-3">
-                     <div class="create-btn-sec">
-                        <img src="assets/images/v1.png" alt="image">
-                        Create Videos
-                     </div>
-                  </div>
-               </div>
-               <div class="row mt-3">
-                  <div class="col-md-12">
-                     <div class="wel-area rounded-4 mb-4">
-                        <div class="d-flex justify-content-between flex-wrap mb-4">
-                           <div class="mt-0 mv-0 sec-title">
-                              Latest Articles
-                           </div>
-                           <div class="position-relative cust-select-con">
-                              <img src="assets/images/calendar.png" class="cal-img" alt="image">
-                              <select class="form-select cust-select-dash">
-                                 <option value="">Select Date Rang</option>
-                                 <option value="">1</option>
-                              </select>
-                           </div>
-                        </div>
-                        <div id="chart">
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="row mt-3">
-                  <div class="col-md-12">
-                     <div class="wel-area rounded-4 mb-4 px-0 h-auto">
-                        <div class="d-flex px-4 justify-content-between flex-wrap mb-2">
-                           <div class="mt-0 mv-0 sec-title">
-                              <img src="assets/images/create-vid-main.svg" class="icon-set" width="35" alt="image">
-                              History
-                           </div>
-                        </div>
-                        <div class="">
-                           <div class="table-header flex-wrap gap-2">
-                              <div class="d-flex gap-3 align-items-center">
-                                 <div class="d-flex gap-2 align-items-center">
-                                    <label for="results">Results</label>
-                                    <select id="results">
-                                       <option value="10">10</option>
-                                       <option value="25">25</option>
-                                       <option value="50">50</option>
-                                    </select>
-                                 </div>
-                              </div>
-                              <div class="search-box position-relative">
-                                 <input type="text" class="form-control" placeholder="Search...">
-                                 <i class="fas fa-search seh-icon"></i>
-                              </div>
-                           </div>
-                           <div class="table-con dashboard-table">
-                              <table class="animify-table">
-                                 <thead>
-                                    <tr>
-                                       <th>
-                                          <div class="d-flex justify-content-between">
-                                             <span class="table-th-title">#</span>
-                                             <span class="d-flex flex-column">
-                                             <button class="btn btn-transparent btn-arrow"><i
-                                                class="fas fa-angle-up arrow-icon active"></i></button>
-                                             <button class="btn btn-transparent btn-down-arrow"><i
-                                                class="fas fa-angle-down arrow-icon"></i></button>
-                                             </span>
-                                          </div>
-                                       </th>
-                                       <th>
-                                          <div class="d-flex justify-content-between">
-                                             <span class="table-th-title">Title</span>
-                                             <span class="d-flex flex-column">
-                                             <button class="btn btn-transparent btn-arrow"><i
-                                                class="fas fa-angle-up arrow-icon active"></i></button>
-                                             <button class="btn btn-transparent btn-down-arrow"><i
-                                                class="fas fa-angle-down arrow-icon"></i></button>
-                                             </span>
-                                          </div>
-                                       </th>
-                                       <th>
-                                          <div class="d-flex justify-content-between">
-                                             <span class="table-th-title">Status</span>
-                                             <span class="d-flex flex-column">
-                                             <button class="btn btn-transparent btn-arrow"><i
-                                                class="fas fa-angle-up arrow-icon active"></i></button>
-                                             <button class="btn btn-transparent btn-down-arrow"><i
-                                                class="fas fa-angle-down arrow-icon"></i></button>
-                                             </span>
-                                          </div>
-                                       </th>
-                                       <th>
-                                          <div class="d-flex justify-content-between">
-                                             <span class="table-th-title">Last Updated</span>
-                                             <span class="d-flex flex-column">
-                                             <button class="btn btn-transparent btn-arrow"><i
-                                                class="fas fa-angle-up arrow-icon active"></i></button>
-                                             <button class="btn btn-transparent btn-down-arrow"><i
-                                                class="fas fa-angle-down arrow-icon"></i></button>
-                                             </span>
-                                          </div>
-                                       </th>
-                                       <th>
-                                          <div class="d-flex justify-content-between">
-                                             <span class="table-th-title">Credit Used</span>
-                                             <span class="d-flex flex-column">
-                                             <button class="btn btn-transparent btn-arrow"><i
-                                                class="fas fa-angle-up arrow-icon active"></i></button>
-                                             <button class="btn btn-transparent btn-down-arrow"><i
-                                                class="fas fa-angle-down arrow-icon"></i></button>
-                                             </span>
-                                          </div>
-                                       </th>
-                                       <th>
-                                          <div class="d-flex justify-content-between">
-                                             <span class="table-th-title">View</span>
-                                             <span class="d-flex flex-column">
-                                             </span>
-                                          </div>
-                                       </th>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-                                    <tr>
-                                       <td>1</td>
-                                       <td>Lorem, ipsum dolor.</td>
-                                       <td>
-                                          <div class="draft-batch">Draft</div>
-                                       </td>
-                                       <td>Subtraction</td>
-                                       <td>32</td>
-                                       <td>
-                                          <div class="d-flex gap-2"><button class="btn btn-view"><i
-                                             class="fas fa-eye"></i></button>
-                                             <button class="btn btn-link"><i class="fas fa-external-link-alt"></i></button>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>1</td>
-                                       <td>Lorem, ipsum dolor.</td>
-                                       <td>
-                                          <div class="pub-batch">Published</div>
-                                       </td>
-                                       <td>Subtraction</td>
-                                       <td>32</td>
-                                       <td>
-                                          <div class="d-flex gap-2"><button class="btn btn-view"><i
-                                             class="fas fa-eye"></i></button>
-                                             <button class="btn btn-link"><i class="fas fa-external-link-alt"></i></button>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>1</td>
-                                       <td>Lorem, ipsum dolor.</td>
-                                       <td>
-                                          <div class="pub-batch">Published</div>
-                                       </td>
-                                       <td>Subtraction</td>
-                                       <td>32</td>
-                                       <td>
-                                          <div class="d-flex gap-2"><button class="btn btn-view"><i
-                                             class="fas fa-eye"></i></button>
-                                             <button class="btn btn-link"><i class="fas fa-external-link-alt"></i></button>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>1</td>
-                                       <td>Lorem, ipsum dolor.</td>
-                                       <td>
-                                          <div class="pub-batch">Published</div>
-                                       </td>
-                                       <td>Subtraction</td>
-                                       <td>32</td>
-                                       <td>
-                                          <div class="d-flex gap-2"><button class="btn btn-view"><i
-                                             class="fas fa-eye"></i></button>
-                                             <button class="btn btn-link"><i class="fas fa-external-link-alt"></i></button>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>1</td>
-                                       <td>Lorem, ipsum dolor.</td>
-                                       <td>
-                                          <div class="pub-batch">Published</div>
-                                       </td>
-                                       <td>Subtraction</td>
-                                       <td>32</td>
-                                       <td>
-                                          <div class="d-flex gap-2"><button class="btn btn-view"><i
-                                             class="fas fa-eye"></i></button>
-                                             <button class="btn btn-link"><i class="fas fa-external-link-alt"></i></button>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </div>
-                           <div class="pagination">
-                              <span>Showing <span>1</span> to <span>10</span> of <span>99</span> entries</span>
-                              <div class="page-controls">
-                                 <button class="btn-pre">Previous</button>
-                                 <button class="btn-page active">1</button>
-                                 <button class="btn-page">2</button>
-                                 <button>...</button>
-                                 <button class="btn-page">10</button>
-                                 <button class="btn-nxt">Next</button>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <script src="assets/js/bootstrap.bundle.min.js"></script>
-      <script src="assets/js/jquery.min.js"></script>
-      <script src="assets/js/apexcharts.js"></script>
-      <script src="assets/js/main.js"></script>
-   </body>
-</html>
+        </div>
+    </div>
+</div>
